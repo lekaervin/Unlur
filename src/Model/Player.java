@@ -3,14 +3,16 @@ package src.Model;
 public abstract class Player {
     Board board;
     int numPlayer;
+    String name;
     Color color;
 
     public Player() {
     }
 
-    public Player(Board board, int numPlayer) {
+    public Player(Board board, int numPlayer, String name) {
         this.board = board;
         this.numPlayer = numPlayer;
+        this.name = name;
         color = Color.noColor;
     }
 
