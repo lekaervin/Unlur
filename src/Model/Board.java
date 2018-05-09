@@ -23,7 +23,6 @@ public class Board {
         maxInd[size-1] = size*2-1;
     }
 
-
         // Crée les cellules et initialise les voisins
     private void initilizeBoard() {
         for (int i = 0; i < size*2-1; i++) {
@@ -125,6 +124,30 @@ public class Board {
                 }
             }
         }
+    }
+
+    public Cell[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(Cell[][] board) {
+        this.board = board;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public int[] getMaxInd() {
+        return maxInd;
+    }
+
+    public void setMaxInd(int[] maxInd) {
+        this.maxInd = maxInd;
     }
 
     // Joue le coup donné
