@@ -20,14 +20,14 @@ public class Cell extends Polygon {
     final static int LEFT = 4;
     final static int TOP_LEFT = 5;
 
-    Cell [] neighbourgs;
+    Cell [] neighbours;
     int border;
     Color color;
 
     public Cell() {
-        neighbourgs = new Cell[6];
-        border = 0;
-        color = Color.noColor;
+        this.neighbours = new Cell[6];
+        this.border = 0;
+        this.color = Color.noColor;
     }
 
     public boolean IsOnBorder() {
