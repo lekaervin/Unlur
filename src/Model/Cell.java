@@ -29,4 +29,8 @@ public class Cell extends Polygon {
         border = 0;
         color = Color.noColor;
     }
+
+    public boolean IsOnBorder() {
+        return (this.border != BORDER_NO);
+    }
 }
