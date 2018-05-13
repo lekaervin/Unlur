@@ -54,4 +54,8 @@ public class Cell extends Polygon {
     public void setColor(Color color) {
         this.color = color;
     }
+
+    public boolean IsOnBorder() {
+        return (this.border != BORDER_NO);
+    }
 }
