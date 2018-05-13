@@ -1,6 +1,7 @@
 package src.Model;
 
 import javafx.scene.shape.Polygon;
+import javafx.scene.paint.Color;
 
 public class Cell extends Polygon {
     // Infos bordures
@@ -20,13 +21,37 @@ public class Cell extends Polygon {
     final static int LEFT = 4;
     final static int TOP_LEFT = 5;
 
-    Cell [] neighbourgs;
+    Cell [] neighbours;
     int border;
     Color color;
 
     public Cell() {
-        neighbourgs = new Cell[6];
-        border = 0;
-        color = Color.noColor;
+        this.neighbours = new Cell[6];
+        this.border = 0;
+        this.color = null;
+    }
+
+    public Cell[] getNeighbours() {
+        return neighbours;
+    }
+
+    public void setNeighbours(Cell[] neighbours) {
+        this.neighbours = neighbours;
+    }
+
+    public int getBorder() {
+        return border;
+    }
+
+    public void setBorder(int border) {
+        this.border = border;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

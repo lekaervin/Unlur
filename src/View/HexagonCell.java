@@ -5,7 +5,6 @@ import src.Model.Cell;
 
 public class HexagonCell extends Polygon {
     private Cell cell;
-    private int i,j;
 
     private static int computecos(double coord0, double rayon, int cote, double rotation) {
         return (int) (coord0 + rayon * Math.cos(2 * cote * Math.PI / 6 + rotation));
@@ -29,21 +28,5 @@ public class HexagonCell extends Polygon {
 
     public void setCell(Cell cell) {
         this.cell = cell;
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
-    }
-
-    public int getJ() {
-        return j;
-    }
-
-    public void setJ(int j) {
-        this.j = j;
     }
 }
