@@ -92,7 +92,7 @@ public class Board {
         }
 
         // Partie du haut
-        for (int i = 1; i < size-2; i++) {
+        for (int i = 1; i < size-1; i++) {
             for (int j = 0; j < maxInd[i]; j++) {
                 if (j == 0) {
                     board[i][j].border += Cell.BORDER_TOP_LEFT;
@@ -106,6 +106,8 @@ public class Board {
                     board[i][j].neighbours[Cell.TOP_RIGHT] = board[i-1][j];
                     board[i][j].neighbours[Cell.RIGHT] = board[i][j+1];
                 }
+                board[i][j].neighbours[Cell.BOTTOM_LEFT] = board[i+1][j];
+                board[i][j].neighbours[Cell.BOTTOM_RIGHT] = board[i+1][j+1];
             }
         }
 
@@ -124,6 +126,8 @@ public class Board {
                     board[i][j].neighbours[Cell.RIGHT] = board[i][j+1];
                     board[i][j].neighbours[Cell.BOTTOM_RIGHT] = board[i+1][j];
                 }
+                board[i][j].neighbours[Cell.TOP_LEFT] = board[i-1][j];
+                board[i][j].neighbours[Cell.TOP_RIGHT] = board[i-1][j+1];
             }
         }
     }
