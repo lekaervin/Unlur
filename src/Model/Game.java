@@ -70,6 +70,9 @@ public class Game {
         }else{
             c.setColor(this.getCurrentPlayer().getColor());
         }
+        if (this.testVictory(c)) {
+            this.gameOver();
+        }
         this.nextPlayer();
     }
 
@@ -88,11 +91,15 @@ public class Game {
         this.getCurrentPlayer().setColor(Color.WHITE);
     }
 
+    private void gameOver(){
+        System.out.println("GAME IS OVERRRRRR");
+    }
+
 
     public boolean testVictory(Cell current) {
         List<Cell> listCell = new ArrayList<Cell>();
         int res = testVictoryRec(current, listCell);
-        if (players[currentPlayer].color == Color.BLACK) {
+        if (this.getCurrentPlayer().getColor() == Color.BLACK) {
             int solution1 = (Cell.BORDER_TOP + Cell.BORDER_BOTTOM_RIGHT + Cell.BORDER_BOTTOM_LEFT);
             int solution2 = (Cell.BORDER_TOP_RIGHT + Cell.BORDER_BOTTOM + Cell.BORDER_TOP_LEFT) ;
             return ((solution1 | res) == solution1 || (solution2 | res) == solution2);
@@ -111,7 +118,7 @@ public class Game {
             res = current.border;
         }
         for (int i = 0; i <= Cell.TOP_LEFT; i++) {
-            if (current.neighbours[i].color == players[currentPlayer].color & !(listCell.contains(current.neighbours[i]))) {
+            if (current.neighbours[i] != null && current.neighbours[i].color == this.getCurrentPlayer().getColor() && !(listCell.contains(current.neighbours[i]))) {
                 listCell.add(current.neighbours[i]);
                 res = res | testVictoryRec(current.neighbours[i], listCell);
             }
