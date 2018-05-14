@@ -32,6 +32,7 @@ public class View extends Application {
             }
         });
         h.setOnMouseClicked(clicked ->{
+            if(h.getCell().getColor()==null)
             if (game.isFirstphase()) {
                 h.setFill(Color.BLACK);
                 game.play(c);
