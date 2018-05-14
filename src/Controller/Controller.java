@@ -1,7 +1,7 @@
 package src.Controller;
 
 import src.Model.*;
-import src.View.View;
+import src.View.GameView;
 
 public class Controller {
 
@@ -10,7 +10,7 @@ public class Controller {
 
     public void run() {
         Game game = createGame();
-        View.show(game);
+        GameView.show(game);
     }
 
     private Game createGame() {

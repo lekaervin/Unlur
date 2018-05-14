@@ -10,11 +10,11 @@ import src.Model.Board;
 import src.Model.Cell;
 import src.Model.Game;
 
-public class View extends Application {
+public class GameView extends Application {
     private final int X_START = 250;
     private final int Y_START = 50;
     private final int RAYON = 30;
-    private final int HIGHT = RAYON*2;
+    private final double HIGHT = RAYON*1.75;
     static Game game;
 
     private void configHexa(HexagonCell h,Cell c){
