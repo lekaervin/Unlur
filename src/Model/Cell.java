@@ -31,12 +31,12 @@ public class Cell extends Polygon {
         this.color = null;
     }
 
-    public Cell[] getNeighbours() {
-        return neighbours;
+    public Cell getNeighbour(int n) {
+        return this.neighbours[n];
     }
 
-    public void setNeighbours(Cell[] neighbours) {
-        this.neighbours = neighbours;
+    public void setNeighbour(Cell neighbour, int n) {
+        this.neighbours[n] = neighbour;
     }
 
     public int getBorder() {
@@ -58,4 +58,5 @@ public class Cell extends Polygon {
     public boolean IsOnBorder() {
         return (this.border != BORDER_NO);
     }
+
 }
