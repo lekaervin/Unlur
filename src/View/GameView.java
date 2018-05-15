@@ -10,7 +10,7 @@ import src.Model.Board;
 import src.Model.Cell;
 import src.Model.Game;
 
-public class View extends Application {
+public class GameView extends Application {
     private final int X_START = 250;
     private final int Y_START = 50;
     private final int RAYON = 30;
@@ -32,6 +32,7 @@ public class View extends Application {
             }
         });
         h.setOnMouseClicked(clicked ->{
+            if(h.getCell().getColor()==null)
             if (game.isFirstphase()) {
                 h.setFill(Color.BLACK);
                 game.play(c);
