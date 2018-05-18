@@ -94,7 +94,7 @@ public class View extends Application {
             grid.getChildren().remove(boxButton);
         });
         boxButton.getChildren().add(pass);
-        grid.add(boxButton,0,1);
+        grid.add(boxButton,1,1);
         //-------------------------------------------
         //Panels Joeurs
         GridPane joueur1 = new GridPane();
