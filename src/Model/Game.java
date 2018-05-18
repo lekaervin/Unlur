@@ -71,7 +71,7 @@ public class Game {
         }else{
             c.setColor(this.getCurrentPlayer().getColor());
         }
-        if (this.testVictory(c)) {
+        if (c.testVictory()) {
             this.gameOver();
         }
         this.nextPlayer();
@@ -96,78 +96,4 @@ public class Game {
         System.out.println("GAME IS OVERRRRRR");
     }
 
-
-/*    public boolean testVictory(Cell current) {
-        List<Cell> listCell = new ArrayList<Cell>();
-        listCell.add(current);
-        int res = testVictoryRec(current, listCell);
-        if (current.getColor() == Color.BLACK) {
-
-            int solution1 = (Cell.BORDER_TOP + Cell.BORDER_BOTTOM_RIGHT + Cell.BORDER_BOTTOM_LEFT);
-            System.out.println(solution1);
-            int solution2 = (Cell.BORDER_TOP_RIGHT + Cell.BORDER_BOTTOM + Cell.BORDER_TOP_LEFT) ;
-            System.out.println(solution2);
-            System.out.println((res));
-            System.out.println((solution1 & res)== solution1);
-            return ((solution1 & res) == solution1 || (solution2 & res) == solution2);
-        } else {
-            int sol1 = (Cell.BORDER_BOTTOM + Cell.BORDER_TOP) ;
-            int sol2 = (Cell.BORDER_BOTTOM_LEFT + Cell.BORDER_TOP_RIGHT);
-            int sol3 = (Cell.BORDER_BOTTOM_RIGHT + Cell.BORDER_TOP_LEFT);
-            System.out.println(sol1 + " " + sol2 + " " + sol3);
-            return (((sol1 & res) == sol1) || ((sol2 & res) == sol2) || ((sol3 & res) == sol3));
-        }
-    }
-
-
-    public int testVictoryRec(Cell current, List<Cell> listCell) {
-        int res = 0;
-        if (current.IsOnBorder()) {
-            res = current.border;
-        }
-        for (int i = 0; i <= Cell.TOP_LEFT; i++) {
-            if (current.neighbours[i] != null && current.neighbours[i].color == current.getColor() && !(listCell.contains(current.neighbours[i]))) {
-                listCell.add(current.neighbours[i]);
-                res = res | testVictoryRec(current.neighbours[i], listCell);
-            }
-        }
-        return res;
-    }*/
-
-
-    public void majBorder(Cell current) {
-        for(int i = Cell.TOP_RIGHT ; i <= Cell.TOP_LEFT ; i++) {
-            if ((current.getNeighbour(i) != null) && (current.getNeighbour(i).getColor() == current.getColor()) && (current.getNeighbour(i).getBorder() != current.getBorder())) {
-                current.getNeighbour(i).setBorder(current.getBorder());
-                majBorder(current.getNeighbour(i));
-            }
-        }
-    }
-
-
-    public boolean testVictory(Cell current) {
-        int currentBorder = current.getBorder();
-        for (int i = Cell.TOP_RIGHT ; i <= Cell.TOP_LEFT ; i++ ) {
-            if ((current.getNeighbour(i) != null) && (current.getNeighbour(i).getColor() == current.getColor())) {
-                currentBorder = currentBorder | current.getNeighbour(i).getBorder();
-            }
-        }
-        current.setBorder(currentBorder);
-        majBorder(current);
-        if (current.getColor() == Color.BLACK) {
-
-            int solution1 = (Cell.BORDER_TOP + Cell.BORDER_BOTTOM_RIGHT + Cell.BORDER_BOTTOM_LEFT);
-            System.out.println(solution1);
-            int solution2 = (Cell.BORDER_TOP_RIGHT + Cell.BORDER_BOTTOM + Cell.BORDER_TOP_LEFT) ;
-            System.out.println(solution2);
-            System.out.println(currentBorder);
-            return ((solution1 & currentBorder) == solution1 || (solution2 & currentBorder) == solution2);
-        } else {
-            int sol1 = (Cell.BORDER_BOTTOM + Cell.BORDER_TOP) ;
-            int sol2 = (Cell.BORDER_BOTTOM_LEFT + Cell.BORDER_TOP_RIGHT);
-            int sol3 = (Cell.BORDER_BOTTOM_RIGHT + Cell.BORDER_TOP_LEFT);
-            System.out.println(sol1 + " " + sol2 + " " + sol3);
-            return (((sol1 & currentBorder) == sol1) || ((sol2 & currentBorder) == sol2) || ((sol3 & currentBorder) == sol3));
-        }
-    }
 }
