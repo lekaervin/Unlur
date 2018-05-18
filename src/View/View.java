@@ -15,19 +15,12 @@ import src.Model.Board;
 import src.Model.Cell;
 import src.Model.Game;
 
-<<<<<<< HEAD:src/View/GameView.java
-public class GameView extends Application {
-    private final int X_START = 250;
-    private final int Y_START = 50;
-    private final int RAYON = 30;
-    private final double HIGHT = RAYON*1.75;
-=======
+
 public class View extends Application {
     private final int X_START = 0;
     private final int Y_START = 0;
     private final int RAYON = 30;
     private final double HIGHT = RAYON*1.7;
->>>>>>> Kirill:src/View/View.java
     static Game game;
 
     private void configHexa(HexagonCell h,Cell c){
