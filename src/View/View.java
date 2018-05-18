@@ -1,23 +1,39 @@
 package src.View;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.Model.Board;
 import src.Model.Cell;
 import src.Model.Game;
 
+<<<<<<< HEAD:src/View/GameView.java
 public class GameView extends Application {
     private final int X_START = 250;
     private final int Y_START = 50;
     private final int RAYON = 30;
     private final double HIGHT = RAYON*1.75;
+=======
+public class View extends Application {
+    private final int X_START = 0;
+    private final int Y_START = 0;
+    private final int RAYON = 30;
+    private final double HIGHT = RAYON*1.7;
+>>>>>>> Kirill:src/View/View.java
     static Game game;
 
     private void configHexa(HexagonCell h,Cell c){
+        //Configuration des couleurs et les intéractions de souris
+
+
         h.setFill(Color.GRAY);
         h.setStrokeWidth(1);
         h.setCell(c);
@@ -32,10 +48,9 @@ public class GameView extends Application {
             }
         });
         h.setOnMouseClicked(clicked ->{
-            if(h.getCell().getColor()==null)
             if (game.isFirstphase()) {
                 h.setFill(Color.BLACK);
-                game.play(c);
+                game.play(h.getCell());
                 h.setStroke(Color.WHITE);
             } else {
                 h.setFill(game.getCurrentPlayer().getColor());
@@ -45,10 +60,11 @@ public class GameView extends Application {
         });
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        Group root = new Group();
-        Board board = game.getBoard();
+    private void constructHexaCells(Board board, Group root,Scene scene){
+        //Deux boucles :
+        // -- Première pour faire les cellules du haut
+        // -- Deuxième pour faire les cellules du bas
+
         int yStart = Y_START;
         for(int i = 0; i < board.getSize();i++){
             int xStart = X_START - (RAYON*i);
@@ -74,17 +90,62 @@ public class GameView extends Application {
             }
             yStart += HIGHT;
         }
-        primaryStage.setTitle("Unlur");
-        Scene scene = new Scene(root,800,800);
+    }
+
+    private void constructIHM(GridPane grid){
+        //Boutton pass
+        HBox boxButton = new HBox();
+        boxButton.setAlignment(Pos.CENTER);
         Button pass = new Button("Pass");
-        pass.setLayoutX(scene.getWidth()/2);
-        pass.setLayoutY(scene.getHeight()-30);
-        root.getChildren().add(pass);
         pass.setOnAction(action ->{
             game.pass();
-            root.getChildren().remove(pass);
+            grid.getChildren().remove(boxButton);
         });
-        scene.setFill(Color.BLACK);
+        boxButton.getChildren().add(pass);
+        grid.add(boxButton,1,1);
+        //-------------------------------------------
+        //Panels Joeurs
+        GridPane joueur1 = new GridPane();
+        joueur1.setStyle("-fx-background-color : grey");
+        Text nom1 = new Text();
+        nom1.setText("Baba Yaga");
+        joueur1.add(nom1,0,0);
+        Text couleur1 = new Text();
+        couleur1.setText("Couleur : Rouge");
+        joueur1.add(couleur1,0,1);
+        grid.add(joueur1,0,0);
+        GridPane joueur2 = new GridPane();
+        joueur2.setStyle("-fx-background-color : grey");
+        Text nom2 = new Text();
+        nom2.setText("Baba Yaga");
+        joueur2.add(nom2,0,0);
+        Text couleur2 = new Text();
+        couleur2.setText("Couleur : Rouge");
+        joueur2.add(couleur2,0,1);
+        grid.add(joueur2,2,0);
+        //-------------------------------------------
+    }
+
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        //Instanciation des variables
+        Group cells = new Group(); //Group d'objet , regroupant toutes les cullules
+        GridPane grid = new GridPane();
+        Scene scene = new Scene(grid,800,800);
+        Board board = game.getBoard();
+
+        //Construction des cellules
+        this.constructHexaCells(board,cells,scene);
+        grid.add(cells,1,0);
+
+        //Initialisation de l'IHM
+        this.constructIHM(grid);
+
+        //Style
+        grid.setStyle("-fx-background-color : black");
+        grid.setAlignment(Pos.CENTER);
+        primaryStage.setTitle("Unlur");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
